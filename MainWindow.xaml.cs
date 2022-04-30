@@ -1,6 +1,7 @@
 ﻿using ShapeCalculator.Shapes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,39 +15,40 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ShapeCalculator
+namespace ShapeCalculator;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public delegate void ShapeChangedDelegate(BaseShape shape);
+    public event ShapeChangedDelegate OnShapeChange;
+
+    public BaseShape? CurrentShape { get; private set; }
+    public List<string> ParametersNames { get; private set; } = new List<string>();
+    public MainWindow()
     {
-        public delegate void ShapeChangedDelegate(BaseShape shape);
-        public event ShapeChangedDelegate OnShapeChange;
-
-        public BaseShape CurrentShape { get; private set; }
-        public List<string> ParametersNames { get; private set; } = new List<string>();
-        public MainWindow()
-        {
-            InitializeComponent();
-            OnShapeChange += new ShapeChangedDelegate(ChangeShape);
-            ShapeSelector.OnShapeSelected = OnShapeChange;            
-        }
-
-        public void ChangeShape(BaseShape shape)
-        {
-            CurrentShape = shape;
-            UpdateImage(shape.ShapeImage);
-            ParametersNames = shape.Parameteres.Keys.ToList();
-        }
-
-
-        private void UpdateImage(BitmapImage image)
-        {
-            ShapeImageHolder.Source = image;
-            if (image == null) return;
-            ShapeImageHolder.Width = image.Width;
-            ShapeImageHolder.Height = image.Height;
-        }     
+        InitializeComponent();
+        OnShapeChange += new ShapeChangedDelegate(ChangeShape);
+        ShapeSelector.OnShapeSelected = OnShapeChange;            
     }
+
+    public void ChangeShape(BaseShape shape)
+    {
+        CurrentShape = shape;
+        UpdateImage(shape.ShapeImage);
+        ParametersNames = shape.Parameteres.Keys.ToList();
+        ParameterChangerHolder.ParametersNames = new ObservableCollection<string>(ParametersNames);
+        InvalidateVisual();
+    }
+
+
+    private void UpdateImage(BitmapImage image)
+    {
+        ShapeImageHolder.Source = image;
+        if (image == null) return;
+        ShapeImageHolder.Width = image.Width;
+        ShapeImageHolder.Height = image.Height;
+    }     
 }

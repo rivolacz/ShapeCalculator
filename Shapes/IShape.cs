@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
-namespace ShapeCalculator.Shapes
+namespace ShapeCalculator.Shapes;
+
+public interface IShape
 {
-    public interface IShape
-    {
-        void CalculateArea();
-        double GetArea();
-    }
+    void CalculateArea();
+    double GetArea();
 }

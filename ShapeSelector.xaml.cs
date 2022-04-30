@@ -14,7 +14,7 @@ namespace ShapeCalculator;
 /// </summary>
 public partial class ShapeSelector : UserControl
 {
-    public Delegate OnShapeSelected;
+    public Delegate? OnShapeSelected;
     
     public List<IShape> Shapes { get; set; } = new List<IShape>();
 

@@ -11,15 +11,8 @@
         <StackPanel>
             <uc:ShapeSelector x:Name="ShapeSelector"></uc:ShapeSelector>
             <Image Name="ShapeImageHolder"  Width="800px" Height="150px" Source="{Binding currentShape.ShapeImage}"/>
-            <ItemsControl  ItemsSource="{Binding ParametersNames}">
-                <ListViewItem>
-                    <uc:ParameterChanger ParameterName="{Binding Key}">
-                    </uc:ParameterChanger>
-                </ListViewItem>
-                <DataTemplate>
-                    
-                </DataTemplate>
-            </ItemsControl>
+            <uc:ParameterChanger x:Name="ParameterChangerHolder">
+            </uc:ParameterChanger>
         </StackPanel>
         
         
