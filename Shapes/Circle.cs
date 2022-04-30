@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ShapeCalculator.Shapes;
-
+﻿namespace ShapeCalculator.Shapes;
 public class Circle : BaseShape, IShape
 {
     public override string Name { get; } = "Kruh";

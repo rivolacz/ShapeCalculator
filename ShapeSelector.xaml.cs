@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using ShapeCalculator.Shapes;
+﻿using ShapeCalculator.Shapes;
 
 namespace ShapeCalculator;
-
-/// <summary>
-/// Interaction logic for ShapeSelector.xaml
-/// </summary>
 public partial class ShapeSelector : UserControl
 {
     public Delegate? OnShapeSelected;
