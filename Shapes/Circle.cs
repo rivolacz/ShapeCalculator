@@ -5,7 +5,7 @@ public class Circle : BaseShape, IShape
 
     public override string FileName => "kruh.png";
 
-    public override Dictionary<string, double> Parameteres { get; set; } = new Dictionary<string, double>();
+    public override ObservableCollection<Parameter> Parameters { get; set; } = new ObservableCollection<Parameter>();
     private const string RadiusName = "Poloměr";
     public Circle()
     {
@@ -15,8 +15,8 @@ public class Circle : BaseShape, IShape
 
     public void CalculateArea()
     {
-        if (!Parameteres.ContainsKey(RadiusName)) return;
-        double radius = Parameteres[RadiusName];
+        Parameter parameter = (Parameter)Parameters.Where((parameter) => parameter.Name == RadiusName);
+        double radius = parameter.Value;
         Area = MathF.PI * radius * radius;
     }
 
@@ -27,6 +27,6 @@ public class Circle : BaseShape, IShape
 
     protected override void InitializeParameters()
     {
-        Parameteres.Add(RadiusName, 0);
+        Parameters.Add(new Parameter(RadiusName,0));
     }
 }

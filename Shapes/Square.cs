@@ -5,7 +5,7 @@ public class Square : BaseShape, IShape
     public override string Name { get; } = "Čtverec";
     public double Side;
     public override string FileName { get; } = "ctverec.png";
-    public override Dictionary<string, double> Parameteres { get; set; } = new Dictionary<string, double>();
+    public override ObservableCollection<Parameter> Parameters { get; set; } = new ObservableCollection<Parameter>();
 
     public Square(double side)
     {
@@ -22,8 +22,8 @@ public class Square : BaseShape, IShape
 
     public void CalculateArea()
     {
-        if (!Parameteres.ContainsKey(SideName)) return;
-        double side = Parameteres[SideName];
+        Parameter parameter = (Parameter)Parameters.Where((parameter) => parameter.Name == SideName);
+        double side = parameter.Value;
         Area = side * side;
     }
 
@@ -34,7 +34,7 @@ public class Square : BaseShape, IShape
 
     protected override void InitializeParameters()
     {
-        Parameteres.Add(SideName, 0);
-        Parameteres.Add("123", 0); Parameteres.Add("SideName", 0); Parameteres.Add("SideName+", 0);
+        Parameters.Add(new Parameter(SideName,0));
+        
     }
 }

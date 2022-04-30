@@ -5,7 +5,7 @@ public abstract class BaseShape
     public abstract string FileName { get; }
     public double Area { get; protected set; }
     public BitmapImage ShapeImage { get; private set; } = new BitmapImage();
-    public abstract Dictionary<string, double> Parameteres { get; set; }
+    public abstract ObservableCollection<Parameter> Parameters { get; set; }
 
     private string directoryName = "ShapeImages";
     protected void LoadImage(string fileName)

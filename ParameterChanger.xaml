@@ -9,14 +9,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ItemsControl Name="ParametersHolder" ItemsSource="{Binding Path=ParametersNames, Mode=TwoWay}">
+        <ItemsControl Name="ParametersHolder" ItemsSource="{Binding Path=Parameters, Mode=TwoWay}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding}" />
-                        <Slider Interval="100">
-                            
-                        </Slider>
+                        <TextBlock Width="100" Margin="10,0,0,0" Text="{Binding Name}" />
+                        <TextBox PreviewTextInput="TextBox_NumberCheck" Width="100" Margin="10,0,0,0" Text="{Binding Value}"/>
                     </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

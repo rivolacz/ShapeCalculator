@@ -11,6 +11,8 @@ public partial class MainWindow : Window , INotifyPropertyChanged
 
     public BaseShape? CurrentShape { get; private set; }
     public List<string> ParametersNames { get; private set; } = new List<string>();
+    public List<Parameter> Parameters { get; private set; } = new List<Parameter>();
+
     public MainWindow()
     {
         InitializeComponent();
@@ -22,8 +24,8 @@ public partial class MainWindow : Window , INotifyPropertyChanged
     {
         CurrentShape = shape;
         UpdateImage(shape.ShapeImage);
-        ParametersNames = shape.Parameteres.Keys.ToList();
-        ParameterChangerHolder.ParametersNames = new List<string>(ParametersNames);
+        ParametersNames = shape.Parameters.Select((parameter) => parameter.Name).ToList();
+        ParameterChangerHolder.Parameters = shape.Parameters;
     }
 
 
@@ -33,5 +35,16 @@ public partial class MainWindow : Window , INotifyPropertyChanged
         if (image == null) return;
         ShapeImageHolder.Width = image.Width;
         ShapeImageHolder.Height = image.Height;
-    }     
+    }
+
+    private void ButtonCalculateArea(object sender, RoutedEventArgs e)
+    {
+        /*Type? shapeType = CurrentShape?.GetType();
+        IShape? shape = (IShape)shapeType.GetInterface(nameof(IShape));
+        if(shape != null)
+        {
+            shape.CalculateArea();
+            double result = shape.GetArea();
+        }*/
+    }
 }
