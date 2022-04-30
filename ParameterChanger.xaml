@@ -5,18 +5,21 @@
              xmlns:uc="clr-namespace:ShapeCalculator" 
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ShapeCalculator"
+             xmlns:local="clr-namespace:ShapeCalculator" d:DataContext="{d:DesignInstance Type=uc:ParameterChanger}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ListBox Name="ParametersHolder" ItemsSource="{Binding ParametersNames}">
-            <ListBox.ItemTemplate>
+        <ItemsControl Name="ParametersHolder" ItemsSource="{Binding Path=ParametersNames, Mode=TwoWay}">
+            <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding}" />
+                        <Slider Interval="100">
+                            
+                        </Slider>
                     </StackPanel>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>

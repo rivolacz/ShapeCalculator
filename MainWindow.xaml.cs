@@ -39,8 +39,7 @@ public partial class MainWindow : Window
         CurrentShape = shape;
         UpdateImage(shape.ShapeImage);
         ParametersNames = shape.Parameteres.Keys.ToList();
-        ParameterChangerHolder.ParametersNames = new ObservableCollection<string>(ParametersNames);
-        InvalidateVisual();
+        ParameterChangerHolder.ParametersNames = new List<string>(ParametersNames);
     }
 
 

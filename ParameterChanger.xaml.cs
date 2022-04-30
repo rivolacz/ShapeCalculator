@@ -22,7 +22,18 @@ namespace ShapeCalculator;
 /// </summary>
 public partial class ParameterChanger : UserControl , INotifyPropertyChanged
 {
-    public ObservableCollection<string> ParametersNames { get; set; } = new ObservableCollection<string>();
+    private List<string> parametersNames = new();
+    public List<string> ParametersNames { 
+        get {
+            return parametersNames;
+        }
+        set
+        {
+            parametersNames = value;
+            OnPropertyChanged(nameof(ParametersNames));
+        }
+    }
+
     public ParameterChanger()
     {
         InitializeComponent();
@@ -31,4 +42,8 @@ public partial class ParameterChanger : UserControl , INotifyPropertyChanged
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
+    private void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 }
