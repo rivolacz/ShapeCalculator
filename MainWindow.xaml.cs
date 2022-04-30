@@ -21,17 +21,32 @@ namespace ShapeCalculator
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<IShape> Shapes { get; set; } = new List<IShape>();
+        public delegate void ShapeChangedDelegate(BaseShape shape);
+        public event ShapeChangedDelegate OnShapeChange;
 
+        public BaseShape CurrentShape { get; private set; }
+        public List<string> ParametersNames { get; private set; } = new List<string>();
         public MainWindow()
         {
             InitializeComponent();
-            AddShapes();
+            OnShapeChange += new ShapeChangedDelegate(ChangeShape);
+            ShapeSelector.OnShapeSelected = OnShapeChange;            
         }
 
-        private void AddShapes()
+        public void ChangeShape(BaseShape shape)
         {
-            Shapes.Add(new Square());
+            CurrentShape = shape;
+            UpdateImage(shape.ShapeImage);
+            ParametersNames = shape.Parameteres.Keys.ToList();
         }
+
+
+        private void UpdateImage(BitmapImage image)
+        {
+            ShapeImageHolder.Source = image;
+            if (image == null) return;
+            ShapeImageHolder.Width = image.Width;
+            ShapeImageHolder.Height = image.Height;
+        }     
     }
 }

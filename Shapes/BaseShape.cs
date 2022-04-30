@@ -11,23 +11,26 @@ namespace ShapeCalculator.Shapes
     public abstract class BaseShape
     {
         public abstract string Name { get; }
+        public abstract string FileName { get; }
+        public double Area { get; protected set; }
         public BitmapImage ShapeImage { get; private set; } = new BitmapImage();
-        private string directoryName = "ShapeImages";
+        public abstract Dictionary<string, double> Parameteres { get; set; }
 
-        protected BitmapImage LoadImage(string fileName)
+        private string directoryName = "ShapeImages";
+        protected void LoadImage(string fileName)
         {
             string currentDirectory = Directory.GetCurrentDirectory();
             string path = Path.Combine(currentDirectory, directoryName, fileName);
             var uri = new Uri(path);
-            BitmapImage shapeImage = new BitmapImage();
             try
             {
-                shapeImage = new BitmapImage(uri);
+                ShapeImage = new BitmapImage(uri);
             }catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            return shapeImage;
         }
+
+        protected abstract void InitializeParameters(); 
     }
 }

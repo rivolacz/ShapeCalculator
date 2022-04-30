@@ -4,10 +4,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShapeCalculator"
-        xmlns:uc="clr-namespace:ShapeCalculator"
+        xmlns:uc="clr-namespace:ShapeCalculator" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="Výpočet obsahu" Height="450" Width="800">
     <Grid>
-        <uc:ShapeSelector></uc:ShapeSelector>
+        <StackPanel>
+            <uc:ShapeSelector x:Name="ShapeSelector"></uc:ShapeSelector>
+            <Image Name="ShapeImageHolder"  Width="800px" Height="150px" Source="{Binding currentShape.ShapeImage}"/>
+            <ItemsControl  ItemsSource="{Binding ParametersNames}">
+                <ListViewItem>
+                    <uc:ParameterChanger ParameterName="{Binding Key}">
+                    </uc:ParameterChanger>
+                </ListViewItem>
+                <DataTemplate>
+                    
+                </DataTemplate>
+            </ItemsControl>
+        </StackPanel>
+        
+        
     </Grid>
 </Window>

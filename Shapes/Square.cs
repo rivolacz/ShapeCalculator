@@ -11,29 +11,39 @@ namespace ShapeCalculator.Shapes
 {
     public class Square : BaseShape, IShape
     {
-        public double Area {get; private set;}
-        public override string Name => "Čtverec";
+        private const string SideName = "Strana";
+        public override string Name { get; } = "Čtverec";
         public double Side;
+        public override string FileName { get; } = "ctverec.png";
+        public override Dictionary<string, double> Parameteres { get; set; } = new Dictionary<string, double>();
 
-        private string fileName = "ctverec.png";
         public Square(double side)
         {
             Side = side;
+            LoadImage(FileName);
+            InitializeParameters();
             CalculateArea();
-            LoadImage(fileName);
         }
         public Square() {
-            LoadImage(fileName);
+            LoadImage(FileName);
+            InitializeParameters();
         }
 
         public void CalculateArea()
         {
-            Area = Side * Side;
+            if (!Parameteres.ContainsKey(SideName)) return;
+            double side = Parameteres[SideName];
+            Area = side * side;
         }
 
         public double GetArea()
         {
             return Area;
+        }
+
+        protected override void InitializeParameters()
+        {
+            Parameteres.Add(SideName, 0);
         }
     }
 }

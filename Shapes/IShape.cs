@@ -9,7 +9,8 @@ using System.Windows.Media.Imaging;
 namespace ShapeCalculator.Shapes
 {
     public interface IShape
-    {   
+    {
+        void CalculateArea();
         double GetArea();
     }
 }
