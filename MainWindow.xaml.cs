@@ -27,19 +27,15 @@ public partial class MainWindow : Window
     private void UpdateImage(BitmapImage image)
     {
         ShapeImageHolder.Source = image;
-        if (image == null) return;
-        ShapeImageHolder.Width = image.Width;
-        ShapeImageHolder.Height = image.Height;
     }
 
     private void ButtonCalculateArea(object sender, RoutedEventArgs e)
     {
         IShape? shape = (IShape)CurrentShape;
-        if (shape != null)
-        {
-            shape.CalculateArea();
-            double result = shape.GetArea();
-            ResultLabel.Text = result.ToString();
-        }
+        if (shape == null) return;
+        shape.CalculateArea();
+        double result = shape.GetArea();
+        string text = result.ToString() + " cm²";
+        ResultLabel.Text = text;
     }
 }

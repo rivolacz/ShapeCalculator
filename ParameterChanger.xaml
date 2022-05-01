@@ -15,6 +15,7 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Width="100" Margin="10,0,0,0" Text="{Binding Name}" />
                         <TextBox PreviewTextInput="TextBox_NumberCheck" Width="100" Margin="10,0,0,0" Text="{Binding Value}"/>
+                        <Label>cm</Label>
                     </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
