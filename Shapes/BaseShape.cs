@@ -10,7 +10,11 @@ public abstract class BaseShape
     private string directoryName = "ShapeImages";
     protected void LoadImage(string fileName)
     {
+        //ShapeCalculator\bin\Debug\net6.0-windows  3x get parent
         string currentDirectory = Directory.GetCurrentDirectory();
+        currentDirectory = Directory.GetParent(currentDirectory).FullName;
+        currentDirectory = Directory.GetParent(currentDirectory).FullName;
+        currentDirectory = Directory.GetParent(currentDirectory).FullName;
         string path = Path.Combine(currentDirectory, directoryName, fileName);
         var uri = new Uri(path);
         try
