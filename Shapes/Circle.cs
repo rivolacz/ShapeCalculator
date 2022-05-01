@@ -15,18 +15,13 @@ public class Circle : BaseShape, IShape
 
     public void CalculateArea()
     {
-        Parameter parameter = (Parameter)Parameters.Where((parameter) => parameter.Name == RadiusName);
+        Parameter parameter = Parameters.FirstOrDefault((parameter) => parameter.Name == RadiusName);
         double radius = parameter.Value;
         Area = MathF.PI * radius * radius;
     }
 
-    public double GetArea()
-    {
-        return Area;
-    }
-
     protected override void InitializeParameters()
     {
-        Parameters.Add(new Parameter(RadiusName,0));
+        Parameters.Add(new Parameter(RadiusName, 0));
     }
 }

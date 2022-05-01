@@ -1,11 +1,13 @@
 ﻿using System.Globalization;
 
 namespace ShapeCalculator;
-public partial class ParameterChanger : UserControl , INotifyPropertyChanged
+public partial class ParameterChanger : UserControl, INotifyPropertyChanged
 {
     private ObservableCollection<Parameter> parameters = new();
-    public ObservableCollection<Parameter> Parameters { 
-        get {
+    public ObservableCollection<Parameter> Parameters
+    {
+        get
+        {
             return parameters;
         }
         set
@@ -34,12 +36,15 @@ public partial class ParameterChanger : UserControl , INotifyPropertyChanged
         string currentNumberText = text.Text;
         string numberTextToAppend = e.Text;
         string numberParsingText = currentNumberText + numberTextToAppend;
-        bool startedToWriteDecimalPart = e.Text == "," || e.Text == ".";
-        if (startedToWriteDecimalPart)
+        bool isNumber;
+        if (numberTextToAppend == "." && !currentNumberText.Contains("."))
         {
-            numberParsingText = currentNumberText;
+            isNumber = double.TryParse(currentNumberText, NumberStyles.Any, CultureInfo.InvariantCulture, out _);
         }
-        bool isNumber = double.TryParse(numberParsingText, NumberStyles.Any, CultureInfo.InvariantCulture, out _);
+        else
+        {
+            isNumber = double.TryParse(numberParsingText, NumberStyles.Any, CultureInfo.InvariantCulture, out _);
+        }
         if (!isNumber)
         {
             e.Handled = true;

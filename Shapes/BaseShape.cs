@@ -16,11 +16,17 @@ public abstract class BaseShape
         try
         {
             ShapeImage = new BitmapImage(uri);
-        }catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             Console.WriteLine(ex.Message);
         }
     }
 
-    protected abstract void InitializeParameters(); 
+    public double GetArea()
+    {
+        return Area;
+    }
+
+    protected abstract void InitializeParameters();
 }

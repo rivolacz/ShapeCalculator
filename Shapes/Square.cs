@@ -22,19 +22,14 @@ public class Square : BaseShape, IShape
 
     public void CalculateArea()
     {
-        Parameter parameter = (Parameter)Parameters.Where((parameter) => parameter.Name == SideName);
+        Parameter parameter = Parameters.FirstOrDefault((parameter) => parameter.Name == SideName);
         double side = parameter.Value;
         Area = side * side;
     }
 
-    public double GetArea()
-    {
-        return Area;
-    }
-
     protected override void InitializeParameters()
     {
-        Parameters.Add(new Parameter(SideName,0));
-        
+        Parameters.Add(new Parameter(SideName, 0));
+
     }
 }

@@ -14,9 +14,10 @@
             <uc:ParameterChanger x:Name="ParameterChangerHolder">
             </uc:ParameterChanger>
         </StackPanel>
-        <Button Click="ButtonCalculateArea" Margin="618,310,36,37">
+        <Button Click="ButtonCalculateArea" Margin="426,348,228,35">
             <TextBlock Text="Vypočítej"/>
         </Button>
+        <TextBlock Name="ResultLabel" Margin="577,356,34,43"/>
     </Grid>
 
 </Window>
